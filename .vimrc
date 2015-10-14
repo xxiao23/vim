@@ -1,6 +1,9 @@
 execute pathogen#infect()
+set nocompatible
 syntax on
 filetype plugin indent on
+set cursorline
+set showcmd
 
 " Solarized stuff
 let g:solarized_termtrans = 1
@@ -11,6 +14,23 @@ let mapleader=","
 
 set encoding=utf-8
 set laststatus=2
+set expandtab
+set tabstop=2 shiftwidth=2 softtabstop=2
+set autoindent
+
+set hlsearch
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+
+set showmatch
+
+" folding
+set foldenable          " enable folding
+set foldlevelstart=10   " open most folds by default
+set foldnestmax=10      " 10 nested fold max 
+" space open/closes folds 
+nnoremap <space> za
+set foldmethod=indent   " fold based on indent level
 
 :nmap \l :setlocal number!<CR>
 :nmap \c :ccl<CR>
@@ -38,6 +58,8 @@ let g:airline_theme='tomorrow'
 " cursor movement
 :nmap j gj
 :nmap k gk
+" highlight last inserted text
+nnoremap gV `[v`]
 
 " buffer
 :nmap <C-n> :bnext<CR>
@@ -66,13 +88,13 @@ nnoremap \a :Ag<SPACE>
 " CtrlP
 :nmap ; :CtrlPBuffer<CR>
 
-:let g:ctrlp_map = '<Leader>t'
-:let g:ctrlp_match_window_bottom = 0
-:let g:ctrlp_match_window_reversed = 0
+:let g:ctrlp_match_window = 'bottom,order:ttb'
+:let g:ctrlp_match_window_bottom = 1
 :let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
-:let g:ctrlp_working_path_mode = 'ra'
+:let g:ctrlp_working_path_mode = 0
 :let g:ctrlp_dotfiles = 0
 :let g:ctrlp_switch_buffer = 0
+:let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " Git
 nnoremap <Leader>b :Gblame<CR>
